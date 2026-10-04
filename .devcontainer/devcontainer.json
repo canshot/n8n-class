@@ -1,6 +1,6 @@
 {
   "name": "n8n Student Environment",
-  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "image": "://microsoft.com",
   "forwardPorts": [5678],
   "portsAttributes": {
     "5678": {
@@ -9,5 +9,5 @@
       "visibility": "public"
     }
   },
-  "postCreateCommand": "sudo mkdir -p /workspaces/n8n_data && sudo chown -R node:node /workspaces/n8n_data && docker run -d --name student-n8n --restart unless-stopped -p 5678:5678 -v /workspaces/n8n_data:/home/node/.n8n n8nio/n8n:latest"
+  "postCreateCommand": "sudo mkdir -p /workspaces/n8n_data && sudo chown -R node:node /workspaces/n8n_data && docker run -d --name student-n8n --restart unless-stopped -p 5678:5678 -e N8N_SECURE_COOKIE=false -v /workspaces/n8n_data:/home/node/.n8n n8nio/n8n:latest"
 }
