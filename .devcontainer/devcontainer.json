@@ -1,6 +1,10 @@
 {
   "name": "n8n Lab",
-  "image": "docker.n8n.io/n8nio/n8n:latest",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  "postCreateCommand": "docker run -d --name n8n -p 5678:5678 -v n8n_data:/home/node/.n8n --restart always docker.n8n.io/n8nio/n8n:latest",
   "forwardPorts": [5678],
   "portsAttributes": {
     "5678": {
@@ -8,6 +12,5 @@
       "onAutoForward": "openBrowser",
       "visibility": "public"
     }
-  },
-  "remoteUser": "node"
+  }
 }
