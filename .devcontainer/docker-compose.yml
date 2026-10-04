@@ -1,14 +1,12 @@
 version: '3.8'
 
 services:
-  # 1. VS Code 서버가 안전하게 구동될 표준 개발 머신
   dev-machine:
     image: ://microsoft.com
     volumes:
+      # 현재 .devcontainer의 상위 폴더(루트)를 컨테이너의 /workspace에 확실하게 연결합니다.
       - ..:/workspace:cached
-    network_mode: service:n8n # n8n과 네트워크를 공유하여 포트를 연동합니다.
 
-  # 2. 실제 n8n 서비스
   n8n:
     image: n8nio/n8n:latest
     restart: unless-stopped
@@ -16,6 +14,8 @@ services:
       - "5678:5678"
     volumes:
       - n8n_data:/home/node/.n8n
+    # dev-machine과 동일한 네트워크망을 쓰도록 묶어줍니다.
+    network_mode: "service:dev-machine"
 
 volumes:
   n8n_data:
