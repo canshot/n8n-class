@@ -4,8 +4,8 @@ services:
   dev-machine:
     image: ://microsoft.com
     volumes:
-      # 현재 .devcontainer의 상위 폴더(루트)를 컨테이너의 /workspace에 확실하게 연결합니다.
-      - ..:/workspace:cached
+      # 깃허브 Codespaces의 표준 기본 경로로 매핑합니다.
+      - ..:/workspaces:cached
 
   n8n:
     image: n8nio/n8n:latest
@@ -14,7 +14,6 @@ services:
       - "5678:5678"
     volumes:
       - n8n_data:/home/node/.n8n
-    # dev-machine과 동일한 네트워크망을 쓰도록 묶어줍니다.
     network_mode: "service:dev-machine"
 
 volumes:

@@ -1,9 +1,8 @@
 {
   "name": "n8n Student Environment",
   "dockerComposeFile": "docker-compose.yml",
-  "service": "n8n",
-  "workspaceFolder": "/workspace",
-  "forwardPorts": [5678],
+  "service": "dev-machine",
+  "forwardPorts":[5678],
   "portsAttributes": {
     "5678": {
       "label": "n8n Web UI",
